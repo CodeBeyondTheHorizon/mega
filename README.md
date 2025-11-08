@@ -299,8 +299,34 @@ Create SonarQube Token:
   - <b> set new password </b>
 #
 
-## Now we need to set up Argocd
-  Settings > Repositories > Connect Repo
+## Connect GitHub Repo in Argocd
+```bash
+  Settings > Repositories > Connect Repo > VIA HTTP/HTTPS (for public repo)
+  For Private repo: user - github-user-name, password - create a github PAT key (i.e. argocd-key)
+```
+
+## Add Shared Library Repo for Jenkins to pick up the Shared Library:
+```bash
+Repo URL: https://github.com/bongodev/jenkins-shared-library
+Jenkins > manage > Syatem > Global Trusted Pipeline Libraries
+```
+
+## Add DockerHub PAT key to Jenkins:
+```bash
+  Jenkins > Credentials > Global Credentials
+```
+
+## SetUP CI Pipeline in Jenkins:
+```bash
+  Jenkins > + New Item > Create CI Pipeline with Jenkinsfile code (from repo)
+  Build the job with image tag (first build might take 20 minutes)
+```
+
+## SetUP CD Pipeline in Jenkins:
+```bash
+  Jenkins > + New Item > Create CD Pipeline with GitOps>Jenkinsfile code (from repo)
+  Build the job
+```
 
 ## Clean Up
 - <b id="Clean">Delete eks cluster</b>
