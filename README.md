@@ -219,7 +219,7 @@ trivy --version
 
 ## Add OWASP Dependency Check (it  might take 20 minutes):
 ```bash
-Jenlkins > Manage >Dependency-Check installations > Install automatically > Install from github.com
+Jenlkins > Manage > Tools > Dependency-Check installations > Install automatically > Install from github.com
 ```
 ## Store SonarQube token with Jenkins
 ```bash
