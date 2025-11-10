@@ -184,8 +184,9 @@ aws configure
 - <i>Pull the latest SonarQube Community Edition</i>
 ```bash
     docker pull sonarqube:community
-
-    Run it:
+```
+- <i>Run the latest SonarQube docker container</i>
+```bash
         docker run -d \
           --name sonarqube \
           -p 9000:9000 \
