@@ -177,7 +177,7 @@ aws configure
 - <b>Check if Nodegroup is created</b>
 ```bash
   kubectl get nodes -n mega
-  Also, go to AWS EC2, you should see to machines got created
+  Also, go to AWS EC2, you should see your desired node machines got created
 ```
 
 - Install and configure SonarQube (Master machine)
