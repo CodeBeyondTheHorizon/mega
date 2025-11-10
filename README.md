@@ -376,8 +376,8 @@ Jenkins > manage > Syatem > Global Trusted Pipeline Libraries
 ## Do this before Building/hitting CI and CD Jenkins jobs:
 ```bash
   Go to Automations directory:
-  File: updatefrontendnew.sh > change INSTANCE_ID=<node-machine-ID where your app will be running>
-  File: updatebackendnew.sh > change INSTANCE_ID=<node-machine-ID where your app will be running>
+  File: updatefrontendnew.sh > change INSTANCE_ID=<ec2-node-machine-ID where your app will be running>
+  File: updatebackendnew.sh > change INSTANCE_ID=<ec2-node-machine-ID where your app will be running>
 ```
 
 ## Clean Up
