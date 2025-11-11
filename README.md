@@ -394,6 +394,98 @@ Jenkins > manage > System > Global Trusted Pipeline Libraries: Name: Shared | Pr
   File: updatebackendnew.sh > change INSTANCE_ID=<ec2-node-machine-ID where your app will be running>
 ```
 
+#
+## Setup Application Monitor on EKS cluster using prometheus and grafana via HELM (On Master machine)
+- <pInstall Helm Chart</p>
+```bash
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+```
+```bash
+chmod 700 get_helm.sh
+```
+```bash
+./get_helm.sh
+```
+
+#
+-  Add Helm Stable Charts for Your Local Client
+```bash
+helm repo add stable https://charts.helm.sh/stable
+```
+
+#
+- Add Prometheus Helm Repository
+```bash
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+```
+
+#
+- Create Prometheus Namespace
+```bash
+kubectl create namespace prometheus
+kubectl get ns
+```
+
+#
+- Install Prometheus using Helm
+```bash
+helm install stable prometheus-community/kube-prometheus-stack -n prometheus
+```
+
+#
+- Verify prometheus installation
+```bash
+kubectl get pods -n prometheus
+```
+
+#
+- Check the services file (svc) of the Prometheus
+```bash
+kubectl get svc -n prometheus
+```
+
+#
+- Expose Prometheus and Grafana to the external world through Cluster IP to NodePort
+> [!Important]
+> After changing (Edit Type: ClusterIp to NodePort), make sure you save the file.
+
+```bash
+kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus
+```
+
+#
+- Verify service
+```bash
+$ kubectl get svc -n prometheus
+- It should be stable-kube-prometheus-sta-operator
+```
+- Add Prometheus stable-kube-prometheus-sta-operator IP to your EC2 Node Machine's SecurityGroup
+#
+- Now,let’s change the SVC file of the Grafana and expose it to the outer world (Edit Type: ClusterIp to NodePort)
+```bash
+kubectl edit svc stable-grafana -n prometheus
+
+```
+
+#
+- Check grafana service
+```bash
+kubectl get svc -n prometheus
+It should be stable-graphana 
+```
+- Add Graphana stable-graphana IP to your EC2 Node Machine's SecurityGroup
+#
+- Get a password for grafana
+```bash
+kubectl get secret --namespace prometheus stable-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+```
+> [!Note]
+> Username: admin
+
+#
+- Now, view the Dashboard in Grafana
+
+#
 ## ⚠️ Clean Up EKS Cluster to save money
 - <b id="Clean">Delete eks cluster</b>
 ```bash
