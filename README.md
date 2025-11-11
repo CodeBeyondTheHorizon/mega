@@ -447,7 +447,7 @@ kubectl get svc -n prometheus
 #
 - Expose Prometheus and Grafana to the external world through Cluster IP to NodePort
 > [!Important]
-> After changing (Edit Type: ClusterIp to NodePort), make sure you save the file.
+> Edit Type: ClusterIp to NodePort, make sure you save the file.
 
 ```bash
 kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus
