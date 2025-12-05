@@ -349,6 +349,7 @@ Create SonarQube Token:
   Add cluster information to inform ArgoCD where to deploy:
     $ argocd cluster add cluster-name-from-context --name any-name
       Example: argocd cluster add mega-project-user@mega.us-west-2.eksctl.io --name mega-ekscluster
+            mega-project-user@mega.us-west-2.eksctl.io is the concept of RBAC
 
 ```
 ## Create an app in Argocd (browser)
